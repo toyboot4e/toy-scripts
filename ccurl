@@ -1,37 +1,45 @@
 #!/usr/bin/env bash
 # cached curl, useful for temporary scarping
 
-cache-dir=~/.cache/ccurl
-mkdir ~/.cache/ccurl 2&1>/dev/null
+cache_dir="$HOME/.cache/ccurl"
+
+if [ ! -d "$cache_dir" ] ; then
+    mkdir "$cache_dir"
+fi
 
 _run() {
+    if [ $# -eq 0 ] ; then
+        echo "given no URL"
+        return
+    fi
+
     case "${1:-}" in
         'c' | 'clear')
-            rm -rf ~/.cache/ccurl/*
-            rm -rf ~/.cache/ccurl/.*
+            rm -rf ~/.cache/ccurl/*  > /dev/null 2>&1
+            rm -rf ~/.cache/ccurl/.* > /dev/null 2>&1
             return
             ;;
     esac
 
-    if [ -f "$cache-dir/$1" ] ; then
-        # cache found
-        cat "$cache-dir/$1"
-        return
-    fi
-
     # we assume the first argument is URL
     url="$1"
 
-    # call curl
-    res="$("curl $@")"
+    # replace `/` in the URL with `@`
+    file_name="$(printf '%s' "$url" | sed 's;/;@;g')"
+    file="$cache_dir/$file_name"
 
-    if [ -eq "$?" 0 ] ; then
-        # success: make cache
-        printf "%s" "$res" | tee "$cache-dir"
-    else
-        # fail:
-        printf "%s" "$res"
-        # TODO: consider stderr? I forgot bash
+    if [ -f "$file" ] ; then
+        # cache found
+        cat "$file"
+        return
+    fi
+
+    # call curl and create cache
+    curl "$@" | tee "$file"
+
+    # remove cache on failure
+    if [ $? != 0 ] ; then
+        rm "$file"
     fi
 }
 
