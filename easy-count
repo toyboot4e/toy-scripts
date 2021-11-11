@@ -2,19 +2,15 @@
 #
 # `wc -l` per Rust module, assuimg use of `mod.rs` and max depth `src/dir/file.rs`.
 
-cd "$(dirname "$0")"
-
 for x in src/* ; do
     if [ -f "$x" ] ; then
         wc -l "$x" | awk '{printf("%s\t%s\n", $2, $1)}'
         continue
     fi
 
-    if [ ! -d "$x" ] ; then
-        continue
+    if [ -d "$x" ] ; then
+        printf '%s\t' "$x"
+        wc -l "$x"/*.rs | sed '' | awk '{sum+=$1;} END {print sum;}'
     fi
-
-    printf '%s\t' "$x"
-    wc -l "$x"/*.rs | sed '' | awk '{sum+=$1;} END {print sum;}'
 done | column -t
 
