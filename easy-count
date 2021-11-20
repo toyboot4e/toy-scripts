@@ -10,7 +10,7 @@ for x in src/* ; do
 
     if [ -d "$x" ] ; then
         printf '%s\t' "$x"
-        wc -l "$x"/*.rs | sed '' | awk '{sum+=$1;} END {print sum;}'
+        wc -l "$x"/*.rs | sed '$d' | awk '{sum+=$1;} END {print sum;}'
     fi
 done | column -t
 
