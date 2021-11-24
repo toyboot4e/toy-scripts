@@ -14,3 +14,5 @@ for x in src/* ; do
     fi
 done | column -t
 
+printf 'total\t\t%s' "$(fd -e rs . src | xargs wc -l | tail -n 1 | awk '{print $1}')"
+
