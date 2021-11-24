@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #
-# converts markdown to input of character counter
+# Removes frontmatter and code block from ordinary markdown
 
 # TODO: exclude link URLs
 
 cat "$@" |
+    # TODO: delete only the first one
     sed "/^---/,//d" |
-    sed '/^```/,//d' |
-    tr -d ' 　\t\n'
+    sed '/^```/,//d'
 

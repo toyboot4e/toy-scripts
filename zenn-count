@@ -3,5 +3,7 @@
 # Character counter for zenn books
 
 SCRIPT="$(cd "$(dirname "$0")" ; pwd)"
-"$SCRIPT/zenn-cat" | wc -m
+"$SCRIPT/zenn-cat" |
+    tr -d ' 　\t\n' |
+    wc -m
 
