@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# cached curl, useful for temporary scarping
+#
+# cached curl, useful for temporary scraping
 
 cache_dir="$HOME/.cache/ccurl"
 
