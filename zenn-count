@@ -1,0 +1,7 @@
+#!/usr/bin/env bash -euE
+#
+# Character counter for zenn books
+
+SCRIPT="$(cd "$(dirname "$0")" ; pwd)"
+"$SCRIPT/zenn-cat" | wc -m
+

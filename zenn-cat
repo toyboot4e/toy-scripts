@@ -1,0 +1,24 @@
+#!/usr/bin/env bash -euE
+#
+# Input for character counter for zenn books
+
+set -o pipefail
+
+SCRIPT="$(cd "$(dirname "$0")" ; pwd)"
+
+if [ "$#" -ne 1 ] ; then
+    # on no argument
+    BOOK="$(fd -a --max-depth 1 . ~/write/zenn/books | fzf)"
+else
+    # on given book directory
+    BOOK="$(cd "$1" ; pwd)"
+fi
+
+pushd "$BOOK" > /dev/null
+trap 'popd > /dev/null' err
+
+files="$(cat config.yaml | grep '^  - ' | sed 's/^  - //g' | sed 's/$/.md/g')"
+"$SCRIPT/md-cat" $files
+
+popd > /dev/null
+

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+# converts markdown to input of character counter
+
+# TODO: exclude link URLs
+
+cat "$@" |
+    sed "/^---/,//d" |
+    sed '/^```/,//d' |
+    tr -d ' 　\t\n'
+
