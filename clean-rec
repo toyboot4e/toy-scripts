@@ -1,0 +1,18 @@
+#!/usr/bin/env bash -euE
+#
+# Run `cargo clean` in all subdirectories that contains `Cargo.toml`.
+# This is important after `rustup update`!
+
+IFS=$'\n\t'
+
+clean() {
+    echo "+ $1"
+    cargo clean --manifest-path "$1"
+}
+
+for toml in $(fd -a Cargo.toml) ; do
+    clean "$toml" &
+done
+
+wait
+
