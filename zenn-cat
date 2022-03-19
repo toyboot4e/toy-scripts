@@ -1,6 +1,7 @@
 #!/usr/bin/env bash -euE
 #
-# Input for character counter for zenn books
+# Input for character counter for [zenn] books
+# [zenn]: https://zenn.dev/
 
 set -o pipefail
 

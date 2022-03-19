@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
-# `wc -l` per Rust module, assuimg use of `mod.rs` and max depth `src/dir/file.rs`.
+# `wc -l` per Rust module with limited support.
+# It assuems use of `mod.rs` and max depth as `src/dir/file.rs`.
 
 for x in src/* ; do
     if [ -f "$x" ] ; then
