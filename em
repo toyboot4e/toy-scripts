@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#
-# run emacs in terminal with Chemacs2 profile `evil`
 
-emacs -nw --with-profile evil "$@"
+CARGO_TARGET_DIR=target/ra emacs -nw --with-profile leaf "$@"
+
