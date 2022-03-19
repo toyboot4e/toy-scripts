@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# Create GIF file from a movie file.
+# https://qiita.com/wMETAw/items/fdb754022aec1da88e6e
+
+# ffmpeg -y -i "$1" -f image2pipe -vcodec ppm - | convert -delay 2 -loop 0 -layers Optimize - gif:- | gifsicle -d 3 -O3 -o "$2"
+
+FPS=15
+ffmpeg -i "$1" \
+       -r "$FPS" \
+       "$2"
+       # -vf scale=640:-1 \
+       # -vf scale=1280:-1 \
+
+

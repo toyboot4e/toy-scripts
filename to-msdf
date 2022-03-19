@@ -1,0 +1,39 @@
+#!/usr/bin/env bash -euE
+#
+# Create MSDF font from charset file (`$1`) and a TTF file (`$2`).
+# Requires [`msdf-atlas-gen`] to be in scope.
+#
+# [`msdf-atlas-gen`]: https://github.com/Chlumsky/msdf-atlas-gen
+
+size=24
+px_range=2
+
+format=png
+ty=msdf
+
+charset="$1"
+ttf="$2"
+
+# Extent the character set file format:
+# - Use `#` for comments
+# - Use newline character as delimiters
+tmp="$(mktemp)"
+cat "$charset" | grep -v '#' | grep -v '^$' | tr '\n' ',' > "$tmp"
+
+dir="$(dirname "$ttf")"
+name="$(basename "$ttf" .ttf)"
+
+msdf-atlas-gen \
+    -size "$size" \
+    -pxrange "$px_range" \
+    -type "$ty" \
+    -charset "$tmp" \
+    -font "$ttf" \
+    -json "$dir/$name-meta.json" \
+    -format "$format" \
+    -coloringstrategy distance \
+    -scanline \
+    -imageout "$dir/$name-texture.$format"
+
+# msdfgen msdf -font mplus-1p/MPLUS-1p-Regular.ttf 'A' -o A.png -size 16 16 -pxrange 2 -autoframe -testrender render.png 1024 1024
+
