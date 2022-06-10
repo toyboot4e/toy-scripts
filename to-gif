@@ -5,10 +5,15 @@
 
 # ffmpeg -y -i "$1" -f image2pipe -vcodec ppm - | convert -delay 2 -loop 0 -layers Optimize - gif:- | gifsicle -d 3 -O3 -o "$2"
 
+target="$2"
+if [ -z "$target" ] ; then
+    target="$(printf '%s' "$1" | sed 's;\..*$;.gif;g')"
+fi
+
 FPS=15
 ffmpeg -i "$1" \
        -r "$FPS" \
-       "$2"
+       "$target"
        # -vf scale=640:-1 \
        # -vf scale=1280:-1 \
 
