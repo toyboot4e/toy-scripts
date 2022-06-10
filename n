@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+CARGO_TARGET_DIR=target/ra nvim --cmd "lua load_profile='nvim'" "$@"
+
