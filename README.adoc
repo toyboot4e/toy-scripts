@@ -20,6 +20,10 @@ Runs Emacs with profile and env vars
 +
 Searches Haskell function definition
 
+* `hrun`
++
+Runs Haskell by writing `main` function body
+
 * `md-cat`
 +
 Creates input for word / character couting
