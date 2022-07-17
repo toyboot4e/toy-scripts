@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
-hgrep --term-width "$COLUMNS" "$@" | command less -iNMR
+# $COLUMNS did not work, so:
+n_cols="$(stty size | cut -d' ' -f2)"
+
+hgrep --term-width "$n_cols" "$@" | command less -iMR
 
