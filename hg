@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+hgrep --term-width "$COLUMNS" "$@" | command less -iNMR
+
