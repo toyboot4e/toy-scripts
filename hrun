@@ -1,3 +1,17 @@
 #!/usr/bin/env bash
 
-echo "main = do print \$ $1" | runghc
+cat << EOS | runghc
+import Control.Applicative
+import Control.Monad
+import Data.Char
+import Data.List
+import Data.Maybe
+import Data.Ord
+import GHC.Float (int2Float)
+import System.IO
+import Text.Printf
+
+main = do
+    print \$ $1
+EOS
+
