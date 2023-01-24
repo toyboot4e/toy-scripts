@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#
+# Take screen shot on X11 using `imagemagick`:
+# https://unix.stackexchange.com/questions/233345/how-can-i-easily-make-screenshots-of-screen-regions-on-arch-linux-with-i3-wm
+
+set -euE
+set -o pipefail
+
+if [ $# -eq 0 ] ; then
+    show_help
+    exit
+fi
+
+if [ "${1}" == '-w' ] ; then
+    # capture a window
+    import_params="-window root"
+    base_folder="${2:-$(pwd)}"
+elif [ "${1}" == '-r' ] ; then
+    # capture a user-selected region
+    import_params=""
+    base_folder="${2:-$(pwd)}"
+else
+    echo "specify -w (window) or -r (region" 1>&2
+fi
+
+outpath="${base_folder}/$(date '+%Y-%m-%d_%H-%M-%S').png"
+
+import ${import_params} "${outpath}"
+
+xclip -selection clipboard -target image/png -i < "${outpath}"
