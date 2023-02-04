@@ -1,8 +1,9 @@
-#!/usr/bin/env bash -euE
+#!/usr/bin/env bash
+
+set -euE
 
 # NOTE: `ccurl` (cached curl) must be in your path
 # TODO: Just search from local haskell reposiotory :(
-
 word="$1"
 
 url="$(hoogle search --json -n1 "$word" | jq .[].url | sed 's;";;g')"

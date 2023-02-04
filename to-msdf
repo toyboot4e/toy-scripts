@@ -1,9 +1,11 @@
-#!/usr/bin/env bash -euE
+#!/usr/bin/env bash
 #
 # Create MSDF font from charset file (`$1`) and a TTF file (`$2`).
 # Requires [`msdf-atlas-gen`] to be in scope.
 #
 # [`msdf-atlas-gen`]: https://github.com/Chlumsky/msdf-atlas-gen
+
+set -euE
 
 size=24
 px_range=2
