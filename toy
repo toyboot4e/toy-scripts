@@ -11,8 +11,8 @@ _help() {
     cat <<EOS
 Easier Linux desktop with toy tools
 
-mount    select device with `fzf` and it's mounted with `udisk2`
-unmount  select device with `fzf` and it's unmounted with `udisk2`
+mount    select device with \`fzf\` and it's mounted with \`udisk2\`
+unmount  select device with \`fzf\` and it's unmounted with \`udisk2\`
 EOS
 }
 
