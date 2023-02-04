@@ -11,20 +11,18 @@ if [ $# -eq 0 ] ; then
     exit
 fi
 
-if [ "${1}" == '-w' ] ; then
-    # capture a window
-    import_params="-window root"
-    base_folder="${2:-$(pwd)}"
-elif [ "${1}" == '-r' ] ; then
-    # capture a user-selected region
-    import_params=""
-    base_folder="${2:-$(pwd)}"
-else
-    echo "specify -w (window) or -r (region" 1>&2
-fi
-
+base_folder="${2:-$(pwd)}"
 outpath="${base_folder}/$(date '+%Y-%m-%d_%H-%M-%S').png"
 
-import ${import_params} "${outpath}"
+if [ "${1}" == '-w' ] ; then
+    # capture a window
+    import -window root "${outpath}"
+elif [ "${1}" == '-r' ] ; then
+    # capture a user-selected region
+    import "${outpath}"
+else
+    echo "specify -w (window) or -r (region)" 1>&2
+fi
 
 xclip -selection clipboard -target image/png -i < "${outpath}"
+
