@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# - [x] mount/unmount with `udisks2`
+# - [ ] set up `i3blocks`
+# - [ ] start music album
+# - [ ] bluetooth device
+
+set -euE
+set -o pipefail
+
+_help() {
+    cat <<EOS
+Easier Linux desktop with toy tools
+
+mount    select device with `fzf` and it's mounted with `udisk2`
+unmount  select device with `fzf` and it's unmounted with `udisk2`
+EOS
+}
+
+_udisk2() {
+    FZF_DEFAULT_COMMAND="
+        lsblk -l | tail -n +2 | grep part |
+            grep -v '^[/| ]' |
+    	grep -v 'SWAP' |
+    	grep -v '/boot' |
+    	grep -v '/nix/store'
+    "
+
+    _RUN="echo '{}' | cut -f1 -d' ' | xargs -I::"
+
+    header="$(printf '%s\n%s' \
+	"$(lsblk -l | sed -n 1p)" \
+        '    Press \`m\` for mount, \`u\` for unmount' \
+    )"
+
+    fzf --reverse --header "$header" \
+	--bind "m:execute-silent@$_RUN udisksctl mount   -b '/dev/::'@+reload(eval $FZF_DEFAULT_COMMAND)" \
+	--bind "u:execute-silent@$_RUN udisksctl unmount -b '/dev/::'@+reload(eval $FZF_DEFAULT_COMMAND)"
+}
+
+_run() {
+    # TODO: select command with fzf?
+    if [ $# -eq 0 ] ; then
+        _help
+        return
+    fi
+
+    cmd="$1"
+    shift 1
+
+    case "$cmd" in
+        'm' | 'mount')
+            _udisk2 "$@"
+    esac
+}
+
+_run "$@"
+
