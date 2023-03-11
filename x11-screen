@@ -1,9 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env -S bash -euE
 #
 # Take screen shot on X11 using `imagemagick`:
 # https://unix.stackexchange.com/questions/233345/how-can-i-easily-make-screenshots-of-screen-regions-on-arch-linux-with-i3-wm
 
-set -euE
 set -o pipefail
 
 if [ $# -eq 0 ] ; then

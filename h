@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-set -euE
+#!/usr/bin/env -S bash -euE
 
 # NOTE: `ccurl` (cached curl) must be in your path
 # TODO: Just search from local haskell reposiotory :(

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env -S bash -euE
 
 # $COLUMNS did not work, so:
 n_cols="$(stty size | cut -d' ' -f2)"

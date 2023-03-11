@@ -1,9 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env -S bash -euE
 #
 # Input for character counter for [zenn] books
 # [zenn]: https://zenn.dev/
 
-set -euE
 set -o pipefail
 
 SCRIPT="$(cd "$(dirname "$0")" ; pwd)"

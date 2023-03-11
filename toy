@@ -1,10 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env -S bash -euE
 # - [x] mount/unmount with `udisks2`
 # - [ ] set up `i3blocks`
 # - [ ] start music album
 # - [ ] bluetooth device
 
-set -euE
 set -o pipefail
 
 _help() {
