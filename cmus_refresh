@@ -5,7 +5,7 @@
 # TODO: Better command?
 seq 0 200 | xargs -I{} cmus-remote -C 'win-remove'
 
-cmus-remote -C "add $HOME/Resources/music"
+cmus-remote -C "add $HOME/resources/music"
 # cmus-remote -C "add $HOME/podcast"
 
 cmus-remote -C 'update-cache'

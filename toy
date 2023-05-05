@@ -17,11 +17,13 @@ EOS
 
 _udisk2() {
     FZF_DEFAULT_COMMAND="
-        lsblk -l | tail -n +2 | grep part |
+        lsblk -l |
+	    tail -n +2 |
+	    grep '/' |
             grep -v '^[/| ]' |
-    	grep -v 'SWAP' |
-    	grep -v '/boot' |
-    	grep -v '/nix/store'
+    	    grep -v 'SWAP' |
+    	    grep -v '/boot' |
+    	    grep -v '/nix/store'
     "
 
     _RUN="echo '{}' | cut -f1 -d' ' | xargs -I::"
