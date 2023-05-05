@@ -1,0 +1,22 @@
+#!/usr/bin/env -S bash -euE
+
+# X11 scratchpad
+# Thanks: https://github.com/jdpedersen1/scripts/blob/main/scratch
+
+# TODO: `--class` or `--title`
+matcher="$2"
+oninit="$3"
+
+if [ "$1" == "--class" ] ; then
+  xdotool search --onlyvisible --class "$matcher" windowunmap \
+      || xdotool search --class "$matcher" windowmap \
+      || $oninit &
+
+elif [ "$1" == "--title" ] ; then
+  xdotool search --onlyvisible --name "$matcher" windowunmap \
+      || xdotool search --name "$matcher" windowmap \
+      || $oninit &
+
+else
+  echo "unknown arg1" 1>&2
+fi
