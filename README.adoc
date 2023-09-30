@@ -4,59 +4,22 @@ My private, junk script files
 
 == Scripts
 
-* `ccurl`
-+
-`curl` with `~/.cache/ccurl` as a cache directory
+|===
+| command      | description
 
-* `clean-rec`
-+
-Runs `cargo clean` recursivelly in parallel (takes too much CPU usage)
-
-* `em`
-+
-Runs Emacs with profile and env vars
-
-* `h`
-+
-Searches Haskell function definition
-
-* `hrun`
-+
-Runs Haskell by writing `main` function body
-
-* `md-cat`
-+
-Creates input for word / character couting
-
-* `n`
-+
-Runs NeoVim with profile and env vars
-
-* `rs-count`
-+
-Counts lines of Rust code repo, but only for limited types of directory structures
-
-* `to-gif`
-+
-Converts the give file to a GIF file
-
-* `to-msdf`
-+
-Converts given font file to an MSDF file
-
-* `x11-screen`
-+
-Command for taking screenshots (supplement for `flameshot`)
-
-* `toy`
-+
-Easier Linux TUI
-
-* `zenn-cat`
-+
-Crates input for character counter for zenn books
-
-* `zenn-count`
-+
-Character counter for zenn books
+| `ccurl`      | `curl` with `~/.cache/ccurl` as a cache directory
+| `clean-rec`  | Runs `cargo clean` recursivelly in parallel (takes too much CPU usage)
+| `em`         | Runs Emacs with profile and env vars
+| `h`          | Searches Haskell function definition
+| `hrun`       | Runs Haskell by writing `main` function body
+| `md-cat`     | Creates input for word / character couting
+| `n`          | Runs NeoVim with profile and env vars
+| `rs-count`   | Counts lines of Rust code repo, but only for limited types of directory structures
+| `to-gif`     | Converts the give file to a GIF file
+| `to-msdf`    | Converts given font file to an MSDF file
+| `x11-screen` | Command for taking screenshots (supplement for `flameshot`)
+| `toy`        | Easier Linux TUI
+| `zenn-cat`   | Crates input for character counter for zenn books
+| `zenn-count` | Character counter for zenn books
+|===
 
