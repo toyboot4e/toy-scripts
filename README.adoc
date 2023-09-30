@@ -5,21 +5,26 @@ My private, junk script files
 == Scripts
 
 |===
-| command      | description
+| command        | description
 
-| `ccurl`      | `curl` with `~/.cache/ccurl` as a cache directory
-| `clean-rec`  | Runs `cargo clean` recursivelly in parallel (takes too much CPU usage)
-| `em`         | Runs Emacs with profile and env vars
-| `h`          | Searches Haskell function definition
-| `hrun`       | Runs Haskell by writing `main` function body
-| `md-cat`     | Creates input for word / character couting
-| `n`          | Runs NeoVim with profile and env vars
-| `rs-count`   | Counts lines of Rust code repo, but only for limited types of directory structures
-| `to-gif`     | Converts the give file to a GIF file
-| `to-msdf`    | Converts given font file to an MSDF file
-| `x11-screen` | Command for taking screenshots (supplement for `flameshot`)
-| `toy`        | Easier Linux TUI
-| `zenn-cat`   | Crates input for character counter for zenn books
-| `zenn-count` | Character counter for zenn books
+| `ccurl`        | `curl` with `~/.cache/ccurl` as a cache directory
+| `clean-rec`    | Runs `cargo clean` recursivelly in parallel (takes too much CPU usage)
+| `clip`         | Just an alias of `xclip -sel clip`
+| `cmus_refresh` | Re-generates `cmus` albums data in a dirty way
+| `em`           | Runs Emacs with profile and env vars
+| `h`            | Searches Haskell function definition
+| `hgrep`        | `hgrep` with `less`
+| `hrun`         | Runs Haskell by writing `main` function body
+| `md-cat`       | Creates input for word / character couting
+| `n`            | Runs NeoVim with profile and env vars
+| `paste`        | Just an alias of `xclip -o -sel clip`
+| `rs-count`     | Counts lines of Rust code repo, but only for limited types of directory structures
+| `to-gif`       | Converts the give file to a GIF file
+| `to-msdf`      | Converts given font file to an MSDF file
+| `toy`          | Easier Linux TUI
+| `x11-pad`      | Better `scratchpad` (show/hide window)
+| `x11-screen`   | Command for taking screenshots (supplement for `flameshot`)
+| `zenn-cat`     | Crates input for character counter for zenn books
+| `zenn-count`   | Character counter for zenn books
 |===
 
