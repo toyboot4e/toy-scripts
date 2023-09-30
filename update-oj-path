@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+file="$HOME/.config/atcoder-cli-nodejs/config.json"
+cat "$file" | grep -v oj-path | tee "$file"
+
