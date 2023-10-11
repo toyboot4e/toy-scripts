@@ -10,11 +10,20 @@ if [ -z "$target" ] ; then
     target="$(printf '%s' "$1" | sed 's;\..*$;.gif;g')"
 fi
 
+# with pallet
+pallet="$(mktemp /tmp/palletXXXXX.png)"
+
+ffmpeg -i "$1" -vf palettegen "$pallet"
+
 FPS=15
 ffmpeg -i "$1" \
+       -i "$pallet" -lavfi paletteuse \
        -r "$FPS" \
        "$target"
+       # preserve color:
+       # -vf scale=out_color_matrix=bt709:out_range=tv \
        # -vf scale=640:-1 \
        # -vf scale=1280:-1 \
 
+rm "$pallet"
 
