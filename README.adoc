@@ -27,5 +27,6 @@ My private, junk script files
 | `x11-screen`     | Command for taking screenshots (supplement for `flameshot`)
 | `zenn-cat`       | Crates input for character counter for zenn books
 | `zenn-count`     | Character counter for zenn books
+| `zenn-outline`   | List zenn book chapeter titles and headings
 |===
 

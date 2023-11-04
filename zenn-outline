@@ -1,0 +1,12 @@
+#!/usr/bin/env -S bash -euE
+
+IFS=$'\n\t'
+dir="$1"
+
+chapters="$(cat "$dir/config.yaml" | grep '^  - ' | sed 's;^  - ;;g')"
+for name in $chapters ; do
+    file="$dir/$name.md"
+    cat "$file" | grep -e '^#' -e '^title:'
+    printf '\n'
+done
+
