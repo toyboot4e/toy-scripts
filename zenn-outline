@@ -1,7 +1,16 @@
 #!/usr/bin/env -S bash -euE
 
 IFS=$'\n\t'
-dir="$1"
+dir=""
+
+if [ "$#" -ne 1 ] ; then
+    # on no argument
+    dir="$(fd -a --max-depth 1 . ~/write/zenn/books | fzf)"
+else
+    # on given book directory
+    dir="$(cd "$1" ; pwd)"
+fi
+
 
 chapters="$(cat "$dir/config.yaml" | grep '^  - ' | sed 's;^  - ;;g')"
 for name in $chapters ; do
