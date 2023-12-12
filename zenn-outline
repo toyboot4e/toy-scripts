@@ -3,9 +3,11 @@
 IFS=$'\n\t'
 dir=""
 
+root="$HOME/write/zenn"
+
 if [ "$#" -ne 1 ] ; then
     # on no argument
-    dir="$(fd -a --max-depth 1 . ~/write/zenn/books | fzf)"
+    dir="$(fd -a --max-depth 1 . "$root/books" | fzf)"
 else
     # on given book directory
     dir="$(cd "$1" ; pwd)"
