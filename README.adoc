@@ -28,5 +28,6 @@ My private, junk script files
 | `zenn-cat`       | Crates input for character counter for zenn books
 | `zenn-count`     | Character counter for zenn books
 | `zenn-outline`   | List zenn book chapeter titles and headings
+| `zenn-pdf`       | Generate a low-quality zenn book pdf with `pandoc`
 |===
 

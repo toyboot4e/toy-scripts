@@ -5,11 +5,11 @@
 
 set -o pipefail
 
-SCRIPT="$(cd "$(dirname "$0")" ; pwd)"
+root="$HOME/write/zenn"
 
 if [ "$#" -ne 1 ] ; then
     # on no argument
-    BOOK="$(fd -a --max-depth 1 . ~/write/zenn/books | fzf)"
+    BOOK="$(fd -a --max-depth 1 . "$root/books" | fzf)"
 else
     # on given book directory
     BOOK="$(cd "$1" ; pwd)"

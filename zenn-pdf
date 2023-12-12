@@ -1,0 +1,25 @@
+#!/usr/bin/env -S bash -euE
+set -o pipefail
+
+root="$HOME/write/zenn"
+script_dir="$(cd "$(dirname "$0")" ; pwd)/lua-filters"
+
+if [ "$#" -ne 1 ] ; then
+    # given no argument
+    book="$(fd -a --max-depth 1 . "$root/books" | fzf)"
+else
+    # given the book directory
+    book="$(cd "$1" ; pwd)"
+fi
+
+name="$(basename "$book")"
+
+# produce Japanese PDF
+# https://qiita.com/sky_y/items/15bf7737f4b37da50372#%E6%96%B9%E6%B3%951-bxjscls%E3%82%92%E4%BD%BF%E3%81%86
+
+pandoc \
+  --pdf-engine=lualatex -V documentclass=bxjsarticle -V classoption=pandoc \
+  --lua-filter "$script_dir/image-filter.lua" \
+  $(cat "$book/config.yaml" | grep '-' | sed 's;^....;;g' | sed 's;$;.md;g' | sed "s;^;$book/;g")\
+  -o "$root/out/$name.pdf"
+
