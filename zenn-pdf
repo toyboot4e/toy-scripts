@@ -20,6 +20,6 @@ name="$(basename "$book")"
 pandoc \
   --pdf-engine=lualatex -V documentclass=bxjsarticle -V classoption=pandoc \
   --lua-filter "$script_dir/image-filter.lua" \
-  $(cat "$book/config.yaml" | grep '-' | sed 's;^....;;g' | sed 's;$;.md;g' | sed "s;^;$book/;g")\
+  $(cat "$book/config.yaml" | grep '-' | grep -v '^ *#' | sed 's;^....;;g' | sed 's;$;.md;g' | sed "s;^;$book/;g")\
   -o "$root/out/$name.pdf"
 
