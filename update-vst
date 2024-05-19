@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+echo clearing..
+
+rm -rf ~/.vst/yabridge
+rm -rf ~/.vst3/yabridge
+rm -rf ~/.clap/yabridge
+
+yabridgectl sync
+yabridgectl status
+
