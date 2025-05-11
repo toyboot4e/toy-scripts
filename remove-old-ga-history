@@ -12,7 +12,6 @@ read ans
 
 if [[ $ans == 'y' || $ans == 'yes' ]] ; then
   echo deleting..
-  set -o xtrace
   printf '%s' "$entries" | xargs -P4 -I{} gh api repos/${owner}/${repo}/actions/runs/{} -X DELETE
 fi
 
