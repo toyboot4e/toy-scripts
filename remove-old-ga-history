@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+owner="toyboot4e"
+repo="$1"
+file_name="$2"
+
+entries="$(gh api "repos/${owner}/${repo}/actions/workflows/${file_name}/runs?per_page=100" | jq -r '.workflow_runs[].id')"
+
+echo "Found $(printf '%s' "$entries" | wc -l) entries. Continue? (y/n)"
+printf '> '
+read ans
+
+if [[ $ans == 'y' || $ans == 'yes' ]] ; then
+  echo deleting..
+  set -o xtrace
+  printf '%s' "$entries" | xargs -P4 -I{} gh api repos/${owner}/${repo}/actions/runs/{} -X DELETE
+fi
+
